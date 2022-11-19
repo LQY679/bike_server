@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间作用是绑定 Dao/Mapper接口,相当于编写了一个类实现了该接口-->
+<mapper namespace="com.bike_server.dao.BikeMapper" >
+    <!--
+         关于sql标签的属性,如果是需要BOM 实体类与基本表进行结构映射的则必须写
+         (注: 即使返回结果是List类型,返回类型也写 实体类)
+    -->
+    <select id="getAllBike" resultType="Bike">
+        select * from `bike`
+    </select>
+
+    <select id="getBikeById" resultType="Bike">
+        select * from `bike` where id = #{id}
+    </select>
+
+    <insert id="addBike" parameterType="Bike">
+        insert into `bike`
+        values(#{id},#{battery_Capacity},#{state},#{position})
+    </insert>
+
+    <delete id="deleteBike">
+        delete from `bike` where id = #{id}
+    </delete>
+
+    <update id="updateBike" parameterType="Bike">
+        update `bike` set `id` = #{id},
+                          `battery_Capacity`=#{battery_Capacity},
+                          `state`=#{state},
+                          `position`=#{position}
+        where id = #{id}
+    </update>
+
+</mapper>

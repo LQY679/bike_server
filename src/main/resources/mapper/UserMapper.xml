@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间作用是绑定 Dao/Mapper接口,相当于编写了一个类实现了该接口-->
+<mapper namespace="com.bike_server.dao.UserMapper" >
+
+    <select id="getAllUser" resultType="User">
+        select * from `user`
+    </select>
+    <select id="getUserById" resultType="User">
+        select * from `user` where uid = #{uid}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into `user` values (#{uid},#{pwd},#{type})
+    </insert>
+
+    <delete id="deleteUser" parameterType="string">
+        delete from `user` where uid = #{uid}
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        update `user` set uid = #{uid},pwd=#{pwd} ,type = #{type} where uid = #{uid}
+    </update>
+
+</mapper>
