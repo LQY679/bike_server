@@ -23,6 +23,7 @@ public class JsonUtility {
         将对象转换成JSON字符串
      */
     public static String toJSONStringByObject(Object o) throws IllegalAccessException {
+        jsonObject.clear(); // 清理缓存
         for (Field field:o.getClass().getDeclaredFields()) {
                 field.setAccessible(true);   // 设置字段为可更改
                 jsonObject.put(field.getName(),field.get(o));
@@ -31,8 +32,8 @@ public class JsonUtility {
     }
 
     public static String toJSONStringByList(List list) throws IllegalAccessException {
+        jsonArray.clear(); // 清理缓存
         for (Object element:list) {
-            toJSONStringByObject(element);
             jsonArray.add(element);
         }
         return jsonArray.toJSONString();

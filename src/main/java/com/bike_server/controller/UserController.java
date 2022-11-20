@@ -57,7 +57,8 @@ public class UserController {
         return JSONObject.toJSONString(jsonData);
     }
 
-    @RequestMapping(value = "/deleteUser/{uid}",method = RequestMethod.DELETE)
+//    @RequestMapping(value = "/deleteUser/{uid}",method = RequestMethod.DELETE)
+    @PostMapping
     public String deleteUser(@PathVariable String uid){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try{
