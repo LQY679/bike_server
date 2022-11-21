@@ -57,8 +57,7 @@ public class UserController {
         return JSONObject.toJSONString(jsonData);
     }
 
-//    @RequestMapping(value = "/deleteUser/{uid}",method = RequestMethod.DELETE)
-    @PostMapping
+    @DeleteMapping(value = "/deleteUser/{uid}")
     public String deleteUser(@PathVariable String uid){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try{
@@ -76,11 +75,11 @@ public class UserController {
         return JSONObject.toJSONString(jsonData);
     }
 
-    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
-    public String addUser(@RequestParam String uid,@RequestParam String pwd,@RequestParam String type){
+    @PostMapping(value = "/addUser")
+    public String addUser(@RequestBody User user){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try {
-            int n = userMapper.addUser(new User(uid,pwd,type));
+            int n = userMapper.addUser(user);
             if (n == 0){
                 jsonData.put("msg","false");
             }
@@ -94,11 +93,12 @@ public class UserController {
         return JSONObject.toJSONString(jsonData);
     }
 
-    @RequestMapping(value = "/updateUser",method = RequestMethod.PUT)
-    public String update(@RequestParam String uid,String pwd,String type){
+    @PutMapping(value = "/updateUser")
+    // axios 中, 使用data 传参 , 必须用@RequestBody接收, 且参数是一个实体类
+    public String update(@RequestBody User user){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try {
-            int n = userMapper.updateUser(new User(uid,pwd,type));
+            int n = userMapper.updateUser(user);
             if (n == 0){
                 jsonData.put("msg","false");
             }

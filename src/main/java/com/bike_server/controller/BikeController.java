@@ -56,11 +56,11 @@ public class BikeController {
         return JSONObject.toJSONString(jsonData);
     }
 
-    @RequestMapping(value = "/addBike",method = RequestMethod.POST)
-    public String addBike(@RequestParam String id, @RequestParam int battery_Capacity, @RequestParam String state,@RequestParam String position){
+    @PutMapping(value = "/addBike")
+    public String addBike(@RequestBody Bike bike){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try {
-            int n = bikeMapper.addBike(new Bike(id,battery_Capacity,state,position));
+            int n = bikeMapper.addBike(bike);
             if (n == 0){
                 jsonData.put("msg","false");
             }
@@ -74,11 +74,11 @@ public class BikeController {
         return JSONObject.toJSONString(jsonData);
     }
 
-    @RequestMapping(value = "/deleteBike/{uid}",method = RequestMethod.DELETE)
-    public String deleteBike(@PathVariable String uid){
+    @DeleteMapping(value = "/deleteBike/{id}")
+    public String deleteBike(@PathVariable String id){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try{
-            int n = bikeMapper.deleteBike(uid);
+            int n = bikeMapper.deleteBike(id);
             if (n==0){
                 jsonData.put("msg","false");
             }
@@ -93,11 +93,11 @@ public class BikeController {
     }
     
     
-    @RequestMapping(value = "/updateBike",method = RequestMethod.PUT)
-    public String update(@RequestParam String id, @RequestParam int battery_Capacity, @RequestParam String state,@RequestParam String position){
+    @PutMapping(value = "/updateBike")
+    public String update(@RequestBody Bike bike){
         JSONObject jsonData = new JSONObject();   // 返回给前端的JSON对象数据
         try {
-            int n = bikeMapper.updateBike(new Bike(id,battery_Capacity,state,position));
+            int n = bikeMapper.updateBike(bike);
             if (n == 0){
                 jsonData.put("msg","false");
             }
