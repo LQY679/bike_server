@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class UserService implements UserMapper{
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     public List<User> getAllUser() {
         return userMapper.getAllUser();

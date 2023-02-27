@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+<body>
+     <form method="post" action="/goPay" id="goPayForm" target="_blank">
+         <input type="hidden" name="order_id">
+         <input type="hidden" name="amount">
+<!--         <textarea name="requestBody" style="display:none;"></textarea>-->
+         <button onclick="goPay()">支付</button>
+     </form>
+</body>
+<script>
+    function goPay(){
+
+        const form = document.querySelector('#goPayForm');
+        // Param参数:
+        document.querySelector("input[name='order_id']").value = "u1001-b1001-1677252890006"
+        document.querySelector("input[name='amount']").value = 5.2
+
+        // Body参数还是无法通过表单发送
+        // let data = {
+        //     order_id: "u1001-b1001-1677251427153",
+        //     amount: 6
+        // }
+        // document.querySelector("textarea").innerText = JSON.stringify(data)
+        // console.log(document.querySelector("textarea"))
+        // form.submit();
+    }
+
+    // !!? 怎么通过axios实现和表单类似的效果
+</script>
+
+</html>

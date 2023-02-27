@@ -16,7 +16,6 @@
     </properties>
 
     <dependencies>
-
         <!-- web启动器,集成了Tomcat -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,17 +52,17 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
 
-
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.35.37.ALL</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间作用是绑定 Dao/Mapper接口,相当于编写了一个类实现了该接口-->
+<mapper namespace="com.bike_server.dao.OrderMapper" >
+
+    <select id="getAllOrder" resultType="Order">
+        select * from `order`
+    </select>
+
+    <select id="getOrderByTrade_type" resultType="Order">
+        select * from `order` where trade_type = #{trade_type}
+    </select>
+
+    <select id="getOrderByOrder_status" resultType="Order">
+        select * from `order` where start_time = #{order_status}
+    </select>
+
+
+    <select id="getOrderByCondition" resultType="Order">
+        select * from `order` where ${condition}
+    </select>
+
+    <select id="getOrderByOrder_id" resultType="Order">
+        select * from `order` where order_id = #{order_id}
+    </select>
+
+    <select id="getOrderByTrade_no" resultType="Order">
+        select * from `order` where trade_no = #{trade_no}
+    </select>
+
+    <insert id="addOrder" >
+        insert into `order` values
+        (#{order_id}, #{trade_no}, #{trade_type}, #{amount}, #{order_status}, #{start_time}, #{end_time})
+    </insert>
+
+    <delete id="deleteOrder" >
+        delete from `order` where order_id = #{order_id}
+    </delete>
+
+    <update id="updateOrder">
+        update `order` set
+                           order_id = #{order_id},
+                           trade_no= #{trade_no} ,
+                           trade_type= #{trade_type} ,
+                           amount= #{amount},
+                           order_status= #{order_status},
+                           start_time= #{start_time} ,
+                           end_time = #{end_time}
+        where order_id = #{order_id}
+    </update>
+
+</mapper>
